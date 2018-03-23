@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-gb">
+
+    <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+    <head>
+        <meta charset="utf-8" /> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>${page_title!"Untitled page"?html}</title>
+
+        <link rel="alternate" type="application/atom+xml" title="Feed - komidesign.com" href="app.php/feedf885?sid=ae580f9e64ba42e4456a37e3cce9aff8">			
+        <link rel="alternate" type="application/atom+xml" title="Feed - New Topics" href="app.php/feed/topicsf885?sid=ae580f9e64ba42e4456a37e3cce9aff8">				
+
+
+        <link href="csscc7b.css?family=Open+Sans:300,400,600&amp;subset=latin,cyrillic-ext,latin-ext,cyrillic,greek-ext,greek,vietnamese" rel="stylesheet" type="text/css">
+        <link href="style/font-awesome.mine9ab.css?assets_version=9" rel="stylesheet">
+        <link href="style/stylesheete9ab.css?assets_version=9" rel="stylesheet">
+        <script type="text/javascript" src="js/simplechecker2.js"></script>
+
+        <!-- FONT ICONS -->
+        <link href="style/subway-icons.css" rel="stylesheet" type="text/css">
+
+
+        <!--[if lte IE 9]>
+                <link href="./styles/Subway/theme/tweaks.css?assets_version=9" rel="stylesheet">
+        <![endif]-->
+
+        <link href="style/stylespectrum.css" rel="stylesheet" type="text/css"/>
+        <link href="style/subway_op.css" rel="stylesheet" type="text/css"/>
+        <style type="text/css">
+            /*LOGO OPTIONS*/
+            /*GENERAL OPTIONS*/
+            /*LAYOUT OPTIONS*/
+
+            /*SKIN OPTIONS*/
+        </style>
+
+        <!-- EXTENSIONS CUSTOM STYLE -->
+        <link href="styles/Subway/theme/extensionse9ab.css?assets_version=9" rel="stylesheet">
+        <link id="democss" href="#" rel="stylesheet" type="text/css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body id="phpbb" class="nojs   notouch section-index ltr  ">
+
+        <div id="main-wrap">
+            <div id="wrap">
+                <a id="top" class="anchor" accesskey="t"></a>
+                <div id="page-header">
+                    <div class="headerbar" role="banner">
+                        <div class="inner">
+                            <div class="top"></div>
+                            <div id="site-description">
+                                <!-- LOGO START BELOW-->
+                                <a id="logo" class="logo" href="progetti" title="SocialDevelop">
+                                    <i class="icon-thunder"></i>	
+                                    <span class="logo-text">SocialDevelop</span>
+                                </a>						
+                                <!-- LOGO END -->				 
+                                <p class="skiplink"><a href="#start_here">Skip to content</a></p>
+                            </div>									
+                            <div class="navbar" role="navigation">
+                                <div class="inner">
+                                    <div id="responsive-menu-button">
+                                        <a href="#"></a>
+                                    </div>
+
+                                    <#if logged??>
+                                    <!-- se sei loggato-->
+                                    <ul id="nav-main" role="menubar">
+                                        <li class="li-home">
+                                            <a href="/SocialDevelop/progetti" title="Homepage">
+                                                <i class="icon-home"></i>
+                                                <span>Home</span></a>
+                                        </li>
+                                        <li class="four-cubes">
+                                            <ul>
+                                                <li class="small-cube">
+                                                    <a href="newprogetto" title="Crea Progetto">
+                                                        <i class="icon-plus-circle"></i>
+                                                        <span>Crea Progetto</span></a>
+
+                                                </li>
+                                                <li class="small-cube">
+                                                    <a href="logout" title="Logout"   role="menuitem">
+                                                        <i class="icon-switch"></i>
+                                                        <span>Logout</span></a>
+                                                </li>
+                                                <li class="small-cube">
+                                                    <a href="profilo?n=${userid}" title="Profilo">
+                                                        <i class="icon-user3"></i>
+                                                        <span>Profilo</span></a>
+                                                </li>					
+                                                <li class="small-cube">
+                                                    <a href="pannello?n=${userid}" title="Pannello" role="menuitem">
+                                                        <i class="icon-feather"></i>
+                                                        <span>Pannello</span></a>
+                                                </li>
+                                            </ul>					
+
+                                        </li>					
+                                    </ul>
+                                    <#else>
+                                    <!-- se non sei loggato-->
+
+                                    <ul id="nav-main" role="menubar">
+                                        <li class="li-home"><a href="/SocialDevelop/progetti" title="Homepage"><i class="icon-home"></i><span>Home</span></a></li>
+                                        <li class="has-dropdown li-forum"><a href="#"><i class="icon-switch"></i><span>Login</span></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a href="" data-toggle="modal" data-target="#loginmodal" accesskey="x" role="menuitem"><i class="icon-user3"></i>Login</a></li>	
+                                                <li><a href="" data-toggle="modal" data-target="#registrati" accesskey="x" role="menuitem"><i class="icon-signup"></i>Registrati</a></li>
+                                            </ul><!-- end dropdown-menu -->
+                                        </li>
+                                    </ul>
+
+
+
+                                    </#if>
+                                </div>
+                            </div>
+                            <!-- Modal login -->
+                            <div class="modal fade" id="loginmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content cube-bg-1">
+                                        <form method="post" action="/SocialDevelop/login">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-uniE0BE"></i></button> 						
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="modal-login-block">
+                                                    <div class="modal-login-header">
+                                                        <h2>Login</h2>
+                                                    </div>
+                                                    <div class="modal-login-content">	
+                                                        <fieldset class="quick-login">				    		
+                                                            <div class="mb20">				    					
+                                                                <input type="email" placeholder="&#xe674  Email" name="email" id="email" size="10" class="inputbox autowidth input-icon required email" title="Email" />
+                                                            </div>
+                                                            <div class="mb20">				    					
+                                                                <input placeholder="&#xe688  Password" type="password" name="password" id="password" size="10" class="inputbox autowidth input-icon required" title="Password" />
+                                                            </div>
+                                                            <div class="mb10">	
+                                                                <a class="op-link" href="recuperopassword">Password dimenticata?</a>
+                                                            </div>				    								
+
+                                                            <input type="submit" name="login" value="Login" class="button2" />
+                                                            <input type="hidden" name="riferimento" value="${riferimento!'progetti'}" />
+                                                        </fieldset>
+                                                    </div>
+                                                </div>	
+                                            </div>
+                                        </form>	
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Modal login END-->	
+                            <!-- Modal login -->
+                            <div class="modal fade" id="registrati" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content cube-bg-1">
+                                        <form method="post" action="/SocialDevelop/registrati" enctype='multipart/form-data' >
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-uniE0BE"></i></button> 						
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="modal-login-block">
+                                                    <div class="modal-login-header">
+                                                        <h2>Registrazione</h2>
+                                                    </div>
+                                                    <div class="modal-login-content">	
+                                                        <fieldset  class="quick-login">				    		
+                                                            <div class="mb20">				    					
+                                                                <input type="text" placeholder="Nome" name="nome" id="nome" size="10" class="inputbox autowidth input-icon required" title="Nome" />
+                                                            </div>
+                                                            <div class="mb20">				    					
+                                                                <input type="text" placeholder="Cognome" name="cognome" id="cognome" size="10" class="inputbox autowidth input-icon required" title="Cognome" />
+                                                            </div>
+                                                            <div class="mb20">				    					
+                                                                <input type="email" placeholder="Email" name="email" id="email" size="10" class="inputbox autowidth input-icon required email" title="Email" />
+                                                            </div>
+                                                            <div class="mb20">				    					
+                                                                <input placeholder="Password" type="password" name="password" id="password" size="10" class="inputbox autowidth input-icon required" title="Password" />
+                                                            </div>
+                                                            <div class="mb20">				    					
+                                                                <input placeholder="Telefono" type="tel" name="telefono" id="telefono" size="10" class="inputbox autowidth input-icon required number" title="Telefono" />
+                                                            </div>
+                                                            <div class="mb20">
+                                                                <label>Data di nascita </label>
+                                                            </div>
+                                                            <div class="mb20">				    					
+                                                                <input type="date"  name="datan" id="datan"   placeholder="yyyy/MM/dd" class="inputbox autowidth input-icon"  />
+
+                                                            </div>
+                                                            <div  class="mb20">
+                                                                <label for="curriculum">Carica il tuo curriculum</label>
+                                                                <br>				    					
+                                                                <input type="file" name="filetoupload" id="filetoupload"/>
+                                                            </div>	
+                                                            <input type="submit" name="login" value="Registrati" class="button2" />
+
+                                                        </fieldset>
+                                                    </div>
+                                                </div>	
+                                            </div>
+                                        </form>	
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- Modal login END-->                                       
+                    </div>
+                    <div class="navbar-bottom">
+
+
+                        <div id="search-box" class="search-box search-header">
+                            <fieldset>
+                                <a href="search">
+                                    <input name="keywords" id="keywords2" type="button" maxlength="128" title="Cerca per parole chiavi" class="inputbox search tiny" size="20"  value="Cerca" />
+                                </a>
+
+                            </fieldset>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+                <#include content_tpl>	
+
+                <!-- Sidebar tabs block start below -->
+
+                <!-- Sidebar tabs block END --> 
+
+
+                <div id="page-footer"  role="contentinfo">
+                    <div class="navbar" role="navigation">
+                        <div class="inner">
+                            <ul id="nav-footer" class="linklist bulletin" role="menubar">
+                                <li class="small-icon icon-uniE0FC rightside" data-last-responsive="true"><a class="go-top" href="#">Top</a></li>
+                            </ul>
+                        </div>
+                    </div>			
+                    <div class="content_footer columns_33">
+                        <div>
+                            <h3>About Us</h3>
+                            <p>Il progetto SocialDevelop, creato da un gruppo di tre studenti frequentanti il terzo anno della laurea base in Informatica, rappresenta un'idea del Prof Giuseppe Della Penna.
+                            </p>
+                        </div>				
+                        <div>
+                            <h3>Extra</h3>
+                            <ul>
+                                <li><i class="icon-uniE0FD"></i><a href="">Seguici</a></li>
+                                <li><i class="icon-uniE0FD"></i><a href="">Contattaci</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>Informazioni</h3>
+                            <ul>
+                                <li><i class="icon-uniE0FD"></i><a href="terminidelservizio">Termini del servizio</a></li>
+                                <li><i class="icon-uniE0FD"></i><a href="">Informativa privacy</a></li>
+                                <li><i class="icon-uniE0FD"></i><a href="" rel="help">FAQ</a></li>
+                            </ul>
+                        </div>
+                    </div>						
+                    <div class="copyright">
+                        <div class="copyright-inner"></div>
+                        <div class="socials"> 
+
+
+                            <a href="https://twitter.com/univaq" class="tw-bg1"><i class="fa fa-twitter"></i></a>
+
+
+                            <a href="https://it-it.facebook.com/univaq.it/" class="fb-bg1"><i class="fa fa-facebook"></i></a>
+
+
+                            <a href="https://www.youtube.com/channel/UC4ny4AIehtYta8ApkDa1c8w" class="youtube-bg1"><i class="fa fa-youtube"></i></a>
+
+
+                            <a href="https://www.linkedin.com/company/universit-degli-studi-dell'aquila" class="linkedin-bg1"><i class="fa fa-linkedin"></i></a>
+
+
+                        </div>		
+                    </div>
+                    <div id="darkenwrapper" data-ajax-error-title="AJAX error" data-ajax-error-text="Something went wrong when processing your request." data-ajax-error-text-abort="User aborted request." data-ajax-error-text-timeout="Your request timed out; please try again." data-ajax-error-text-parsererror="Something went wrong with the request and the server returned an invalid reply.">
+                        <div id="darken">&nbsp;</div>
+                    </div>
+                    <div id="phpbb_alert" class="phpbb_alert" data-l-err="Error" data-l-timeout-processing-req="Request timed out.">
+                        <a href="#" class="alert_close"></a>
+                        <h2 class="alert_title">&nbsp;</h2><p class="alert_text"></p>
+                    </div>
+                    <div id="phpbb_confirm" class="phpbb_alert">
+                        <a href="#" class="alert_close"></a>
+                        <div class="alert_text"></div>
+                    </div>
+                </div>
+            </div>
+            <div style="display:none;">
+                <a id="bottom" class="anchor" accesskey="z"></a>
+            </div>
+            <script type="text/javascript" src="js/jquery.mine9ab.js?assets_version=9"></script>
+
+            <script type="text/javascript" src="js/coree9ab.js?assets_version=9"></script>
+            <script type="text/javascript" src="js/custom.bootstrap.min.js"></script>
+            <script type="text/javascript" src="js/custom.js"></script>
+
+            <script type="text/javascript" src="js/jquery.countdown.min.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('[data-countdown]').each(function () {
+                        var $this = $(this), finalDate = $(this).data('countdown');
+                        $this.countdown(finalDate, function (event) {
+                            $this.html(event.strftime('<div><div class="countdown-numbers">%D</div><div class="countdown-text">days</div></div>'
+                                    + '<div><div class="countdown-numbers">%H</div><div class="countdown-text">hours</div></div>'
+                                    + '<div><div class="countdown-numbers">%M</div><div class="countdown-text">min</div></div>'
+                                    + '<div><div class="countdown-numbers">%S</div><div class="countdown-text">sec</div></div>'));
+                        });
+                    });
+                });
+            </script>
+            <script type="text/javascript" src="js/forum_fne9ab.js?assets_version=9"></script>
+            <script type="text/javascript" src="js/ajaxe9ab.js?assets_version=9"></script>
+
+    </body>
+
+</html>

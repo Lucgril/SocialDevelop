@@ -1,0 +1,299 @@
+<div id="page-body" role="main">
+    <div id="p7" class="post has-profile bg2">
+        <div class="inner">
+            <dl class="postprofile" id="profile7">
+                <dd class="profile-posts"><strong>Tipo: </strong>${task.tipo.nome}</dd>
+                <br>
+                <dd class="profile-posts"><strong>Data di inizio: </strong>${task.dataInizio}</dd>
+                <br>
+                <dd class="profile-posts"><strong>Data di fine: </strong>${task.dataFine}</dd>
+                <br>
+                <dd class="profile-joined"><strong>Posti disponibili: </strong>${task.collaboratori-task.collaboratoritot}</dd>
+                <br>
+                <#if taskfinito??>
+                <dd id="ddfs"  class="profile-posts"><strong>Task Finito!</strong></dd>
+                <#else>
+                <#if (pieno)>
+
+                <dd id="ddfs"  class="profile-posts"><strong>Domanda Effettuata!</strong></dd>
+                <#else>
+                <#if logged??>
+                <#if domandato??>
+                <dd id="ddfs"  class="profile-posts"><strong>Domanda Effettuata!</strong></dd>
+                <#else>
+                <#if adatto??>
+                <a href="task?n=${n}&p">
+                    <button id="partecipa"><span>Partecipa</span></button>
+                </a>
+                </#if>
+                </#if>
+                </#if>
+                </#if>
+                </#if>
+            </dl>
+
+            <div class="postbody">
+                <div id="post_content7">
+                    <h3 class="first">${task.nome}</h3>
+
+                    <p class="author">
+
+                        <span class="responsive-hide">by <strong><a href="profilo?n=${utente.id}" id="cdaa" class="username-coloured">${utente.nome}  ${utente.cognome}</a></strong></span>
+                    </p>
+
+                    <div class="content">
+                        ${task.descrizione}
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            <hr class="divider"/>
+        </div>
+    </div>
+    <div class="forabg dividi2" id="dimr">
+
+        <div class="inner">
+            <ul class="topiclist">
+                <li class="header">
+                    <dl class="row-item">
+                        <dt><div class="list-inner" id="divw3"><a href="">Sviluppatori</a></div></dt>
+
+                    </dl>
+                </li>
+            </ul>
+            <#if (partecipanti?size>0) || (partecipanti3?size>0)>
+            <div class="scrollbar3" id="style-3">
+                <ul class="topiclist forums" id="voti" >
+                    <#if (partecipanti3?size>0)>
+
+                    <#list partecipanti3 as p3>
+                    <li class="row">
+                        <dl class="row-item forum_read_subforum">
+                            <dt title="${p3.nome}">
+                                <div class="list-inner" id="divw8">
+                                    <a href="profilo?n=${p3.id}" class="forumtitle"  >${p3.nome} ${p3.cognome}</a> 
+                                    <#if adminp??>
+
+
+                                    <#if taskfinito??>
+                                    <form action="aggiungivalutazione" method="post">
+                                        <input class="livelloCorto" type="number" name="valutazione" min="1" max="5"/>
+                                        <input type="hidden" name="userid" value="${p3.id}"/>
+                                        <input type="hidden" name="taskid" value="${n}"/>
+                                        <input  type="hidden" name="domanda" value="1"/>
+                                        <input class="button2" type="submit" value="Inserisci Valutazione"/>
+                                    </form>
+                                    <#else>
+                                    <form action="eliminasviluppatore" method="post">
+                                        <input type="hidden" name="userid" value="${p3.id}"/>
+                                        <input type="hidden" name="taskid" value="${n}"/>
+                                        <input type="hidden" name="domanda" value="1"/>
+                                        <input class="button2" type="submit" value="Elimina Sviluppatore"/>
+                                    </form>
+                                    </#if>
+                                    </#if>
+                                    <br />
+
+                                </div>
+                            </dt>
+
+                        </dl>
+                    </li>
+                    </#list>
+
+                    </#if>
+                    <#if (partecipanti?size>0)>
+                    <#list partecipanti as p>
+                    <li class="row">
+                        <dl class="row-item forum_read_subforum">
+                            <dt title="${p.nome}">
+                                <div class="list-inner" id="divw8" >
+                                    <a href="profilo?n=${p.id}" class="forumtitle" >${p.nome} ${p.cognome}</a> 
+                                    <#if adminp??>
+
+
+                                    <#if taskfinito??>
+                                    <h3>Utente Valutato</h3>
+                                    <#else>
+                                    <form action="eliminasviluppatore" method="post">
+                                        <input type="hidden" name="userid" value="${p.id}"/>
+                                        <input type="hidden" name="taskid" value="${n}"/>
+                                        <input  type="hidden" name="domanda" value="1"/>
+                                        <input class="button2" type="submit" value="Elimina Sviluppatore"/>
+                                    </form>
+                                    </#if>
+                                    </#if>
+                                    <br />
+
+                                </div>
+                            </dt>
+
+                        </dl>
+                    </li>
+                    </#list>
+                    </#if>
+                </ul>
+            </div>
+            <#else>
+            <div class="scrollbar3" id="style-3">
+                <ul class="topiclist forums" id="voti">
+
+                    <li class="row">
+                        <dl class="row-item ">
+                            <dt >
+                                <div class="list-inner" id="divw8">
+                                    Non ci sono ancora Sviluppatori che hanno fatto domanda!
+
+
+                                </div>
+                            </dt>
+
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+            </#if>
+        </div>
+    </div>
+    <div class="forabg" id="dividi49">
+        <div class="inner">
+            <ul class="topiclist">
+                <li class="header">
+                    <dl class="row-item">
+                        <dt><div class="list-inner" id="divw3"><a href="">Sviluppatori</a></div></dt>
+
+                    </dl>
+                </li>
+            </ul>
+            <#if (partecipanti2?size>0) || (partecipanti4?size>0)>
+            <div class="scrollbar3" id="style-3">
+                <ul class="topiclist forums" id="voti">
+                    <#if (partecipanti4?size>0)>
+
+                    <#list partecipanti4 as p4>
+                    <li class="row">
+                        <dl class="row-item">
+                            <dt title="${p4.nome}">
+                                <div class="list-inner" id="divw8">
+                                    <a href="profilo?n=${p4.id}" class="forumtitle">${p4.nome} ${p4.cognome}</a> 
+                                    <#if adminp??>
+
+
+                                    <#if taskfinito??>
+                                    <form action="aggiungivalutazione" method="post">
+                                        <input class="livelloCorto" type="number" name="valutazione" min="1" max="5"/>
+                                        <input type="hidden" name="userid" value="${p4.id}"/>
+                                        <input type="hidden" name="taskid" value="${n}"/>
+                                        <input  type="hidden" name="proposta" value="1"/>
+                                        <input class="button2" type="submit" value="Inserisci Valutazione"/>
+                                    </form>
+                                    <#else>
+                                    <form action="eliminasviluppatore" method="post">
+                                        <input type="hidden" name="userid" value="${p4.id}"/>
+                                        <input type="hidden" name="taskid" value="${n}"/>
+                                        <input type="hidden" name="domanda" value="1"/>
+                                        <input class="button2" type="submit" value="Elimina Sviluppatore"/>
+                                    </form>
+                                    </#if>
+                                    </#if>
+                                    <br />
+
+                                </div>
+                            </dt>
+
+                        </dl>
+                    </li>
+                    </#list>
+                    </#if>
+                    <#if (partecipanti2?size>0)>
+                    <#list partecipanti2 as p2>
+                    <li class="row">
+                        <dl class="row-item">
+                            <dt title="${p2.nome}">
+                                <div class="list-inner" id="divw8">
+                                    <a href="profilo?n=${p2.id}" class="forumtitle" >${p2.nome} ${p2.cognome}</a> 
+                                    <#if adminp??>
+
+
+                                    <#if taskfinito??>
+                                    <h3>Utente Valutato</h3>
+                                    <#else>
+                                    <form action="eliminasviluppatore" method="post">
+                                        <input type="hidden" name="userid" value="${p2.id}"/>
+                                        <input type="hidden" name="taskid" value="${n}"/>
+                                        <input type="hidden" name="domanda" value="1"/>
+                                        <input class="button2" type="submit" value="Elimina Sviluppatore"/>
+                                    </form>
+                                    </#if>
+                                    </#if>
+                                    <br />
+
+                                </div>
+                            </dt>
+
+                        </dl>
+                    </li>
+                    </#list>
+                    </#if>
+                </ul>
+            </div>
+            <#else>
+            <div class="scrollbar3" id="style-3">
+                <ul class="topiclist forums" id="voti">
+
+                    <li class="row">
+                        <dl class="row-item ">
+                            <dt >
+                                <div class="list-inner" id="divw8">
+                                    Non ci sono ancora Sviluppatori invitati dall'amministratore!
+
+
+                                </div>
+                            </dt>
+
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+            </#if>
+        </div>
+
+    </div>
+
+
+
+
+    <#if taskfinito??>
+    <#else>
+    <#if adminp??>
+    <form method="post" action="cercasviluppatori" data-focus="keywords">
+        <div class="panel">
+            <div class="inner">
+                <h3>Query di ricerca</h3>
+                <fieldset>
+                    <dl>
+                        <dt><label for="keywords">Cerca sviluppatori da invitare:</label><br /></dt>
+                        <dd><input type="search" class="inputbox" name="keywords" id="keywords" size="40" title="Cerca per parole chiavi" /></dd>
+                    </dl>
+
+                </fieldset>
+                <fieldset class="submit-buttons">
+
+                    <input type="reset" value="Reset" name="reset" class="button2" />&nbsp;
+                    <input type="submit" name="submit" value="Cerca" class="button1" />
+                </fieldset>
+            </div>
+        </div>
+
+
+
+
+    </form>
+    </#if>
+    </#if>
+</div>
+
+

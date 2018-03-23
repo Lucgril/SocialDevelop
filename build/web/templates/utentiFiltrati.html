@@ -1,0 +1,58 @@
+<div id="page-body" role="main">
+    <div class="forabg" id="newprogetto">
+        <div class="inner">
+            <ul class="topiclist">
+                <li class="header">
+                    <dl class="row-item">
+                        <dt><div class="list-inner"><a href="">Utenti</a></div></dt>
+                    </dl>
+                </li>
+            </ul>
+            <#if (utenti?size>0)>
+            <ul class="topiclist forums" id="voti">
+                <form action="creaproposta" method="GET">
+                    <#list utenti as utente>
+                    <li class="row">
+                        <dl class="row-item forum_read">
+
+                            <dt title="${utente.nome}">
+
+                                <div class="list-inner">
+                                    <#if coordinatore??>
+                                    <input type="checkbox" name="utenti${utente.id}" value="${utente.id}"></#if>
+                                    <a href="profilo?n=${utente.id}" class="forumtitle" >${utente.nome} ${utente.cognome}</a>
+
+
+                                </div>
+                            </dt>
+                        </dl>
+                    </li>
+                    </#list>
+                    <#if coordinatore??>
+                    <input style="display: block; margin: 0 auto; width: 100px; height: 10%;" id="newtask2" type="submit" class="button1" value="Invita"/>
+
+                    </#if>
+                </form>
+            </ul>
+            <#else>
+            <ul class="topiclist forums" id="voti">
+
+                <li class="row">
+                    <dl class="row-item ">
+                        <dt >
+                            <div class="list-inner">
+                                Non ci sono utenti con le skill richieste!
+
+
+                            </div>
+                        </dt>
+
+                    </dl>
+                </li>
+            </ul>
+            </#if>
+        </div>
+    </div>
+</div><!-- #inner-body-with-sidebar END-->
+
+

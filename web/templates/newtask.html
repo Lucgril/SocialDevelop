@@ -1,0 +1,59 @@
+<a id="start_here" class="anchor"></a>
+<div id="page-body" role="main">
+
+    <form action="" method="POST" id="form-new-task" >
+        <div class="panel">
+            <div class="inner">
+                <div class="content">
+                    <h2>Aggiungi un task al progetto</h2>
+                    <fieldset>
+                        <input type="hidden" id="crea" name="crea" value="1"/>
+
+                        <dl>
+                            <dt><label for="nomeTask">Nome Task:</label></dt>
+                            <dd><input class="inputbox" type="text" name="nometask" id="nometask"/></dd>
+                        </dl>
+                        <dl>
+                            <dt><label for="descrizione">Descrizione generale:</label><br /><span>Qui inseriamo la descrizione generale visualizzata dagli utenti.<br/><br/></span></dt>
+                            <dd><input class="inputbox" type="text" name="descrizione" id="descrizione"  maxlength="100" /></dd>
+                        </dl>
+                        <dl>
+                            <dt><label for="numcollaboratori">Numero di collaboratori necessari:</label></dt>
+                            <dd><input class="inputbox" type="number" name="numcollaboratori" id="numcollaboratori" min='0'  /></dd>
+                        </dl>
+                        <dl>
+                            <dt><label for="datainizio">Data inizio Task:</label></dt>
+                            <dd><input class="inputbox" type="date" name="datainizio" placeholder="yyyy/MM/dd" id="datainizio"   />
+
+                        </dl>
+                        <dl>
+                            <dt><label for="datafine">Data fine Task:</label></dt>
+                            <dd><input class="inputbox"  type="date" name="datafine" placeholder="yyyy/MM/dd" id="datafine"/>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><label for="tipo">Tipo Task:</label></dt>
+                            <dd><select id="tipo" name="tipo">
+
+                                    <#if (tipi?size>0)>
+                                    <#list tipi as tipo>
+                                    <option value="${tipo.id}">${tipo.nome}</option> 
+                                    </#list>
+                                    </#if>
+                                </select></dd>
+                        </dl>
+
+                        <dl>
+                            <dt>&nbsp;</dt>
+                            <dd><input type="submit" name="creatask" id="creatask" class="button1" value="Crea Task" tabindex="2" />&nbsp; <input type="reset" value="Reset" name="reset" class="button2" /></dd>
+                        </dl>
+                    </fieldset>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>	
+
+
+

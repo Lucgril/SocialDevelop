@@ -1,0 +1,56 @@
+<div id="page-body" role="main">			
+    <div class="panel">
+	<div class="action-bar bar-top">
+            <h1 style="color:black">Ricerca</h1>
+        </div>
+    </div>
+    <form method="get" action="" data-focus="keywords">
+    <div class="panel">
+	<div class="inner">
+            <h3>Query di ricerca</h3>
+            <fieldset>
+                <dl>
+                    <dt><label for="keywords">Cerca per parole chiavi:</label><br /></dt>
+                    <dd><input style="margin-left: -20%" type="search" class="inputbox" name="keywords" id="keywords" size="40" title="Cerca per parole chiavi" /></dd>
+                </dl>
+                <dl>
+                    <dt><label for="author">Cerca per coordinatore:</label><br /></dt>
+                    <dd><input style="margin-left: -20%" type="search" class="inputbox" name="author" id="author" size="40" title="Cerca per coordinatore" /></dd>
+                </dl>
+            </fieldset>
+	</div>
+    </div>
+    <div class="panel bg2">
+	<div class="inner">
+            <h3>Opzioni di ricerca</h3>
+            <fieldset>
+                
+                <dl>
+                    <dt><label for="sd">Sort results by:</label></dt>
+                    <dd><select name="sk" id="sk"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="f">Forum</option><option value="i">Topic title</option><option value="s">Post subject</option></select>&nbsp;
+			<label for="sa"><input type="radio" name="sd" id="sa" value="a" /> Ascending</label>
+			<label for="sd"><input type="radio" name="sd" id="sd" value="d" checked="checked" /> Descending</label>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt><label>Limit results to previous:</label></dt>
+                    <dd><select name="st" id="st"><option value="0" selected="selected">All results</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select></dd>
+                </dl>
+                <dl>
+                    <dt><label>Return first:</label></dt>
+                    <dd><select name="ch" title="Return first"><option value="-1">All available</option><option value="0">0</option><option value="25">25</option><option value="50">50</option><option value="100">100</option><option value="200">200</option><option value="300" selected="selected">300</option><option value="400">400</option><option value="500">500</option><option value="600">600</option><option value="700">700</option><option value="800">800</option><option value="900">900</option><option value="1000">1000</option></select> characters of posts</dd>
+                </dl>
+	    </fieldset>
+	</div>
+    </div>
+    <div class="panel bg3">
+	<div class="inner">
+            <fieldset class="submit-buttons">
+		<input type="hidden" name="t" value="0" />
+                <input type="reset" value="Reset" name="reset" class="button2" />&nbsp;
+		<input type="submit" name="submit" value="Search" class="button1" />
+            </fieldset>
+	</div>
+    </div>
+    </form>							
+</div>	

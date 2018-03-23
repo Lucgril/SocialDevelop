@@ -1,0 +1,302 @@
+<script src="js/jquery.min.js">/* */</script>
+<script>
+
+    $(document).ready(function(){
+
+
+
+    function makeTabs(container) {
+    var tabcontainer = $(container);
+    tabcontainer.addClass("enabled");
+    $("[role='tablist'] > [role='tab']", tabcontainer).click(function(){
+    var tab = $(this);
+    if (tab.hasClass("active")) return;
+    var tabid = tab.attr("aria-controls");
+    var panel = $("#" + tabid, tabcontainer);
+    $("[role='tablist'] > [role='tab']", tabcontainer).attr("aria-selected", "false").removeClass("active");
+    tab.attr("aria-selected", "true").addClass("active");
+    $("[role='tabpanel']", tabcontainer).attr("aria-hidden", "true").removeClass("active");
+    panel.attr("aria-hidden", "false").addClass("active");
+    tabcontainer.trigger("awdtabs:change", tab);
+    //RICEVENTE: $(document).on("awdtabs:change",function(e,a2){comsole.log(a2)})
+    });
+    }
+
+    //la funzione che segue prima manipola il container per creare tutto il
+    //markup richiesto da un tabcontainer "standard", poi richiama makeTabs
+    //per attivarlo
+    function makeTabs2(container) {
+    var tabcontainer = $(container);
+    if (tabcontainer.hasClass("tabs")) {
+    var tablist = $("<ul role='tablist'/>");
+    var panels = $("> section", tabcontainer);
+    if (panels.filter(".active").length == 0) panels.first().addClass("active");
+    panels.wrapAll("<div class='tabcontent'/>");
+    panels.each(function(){
+    var uid = Math.floor(Math.random() * 26) + Date.now();
+    var panel = $(this)
+            var tabid = (panel[0].hasAttribute("id") ? panel.attr("id") : ("tabx" + (uid)));
+    var tabtitle = (panel[0].hasAttribute("data-label") ? panel.attr("data-label") : $("header", panel).text());
+    var tab = $("<li role='tab'/>");
+    tab.attr("aria-controls", tabid);
+    tab.text(tabtitle);
+    panel.attr("id", tabid);
+    panel.attr("role", "tabpanel");
+    if (panel.hasClass("active")) {
+    tab.addClass("active");
+    tab.attr("aria-selected", "true");
+    panel.attr("aria-hidden", "false");
+    } else {
+    tab.attr("aria-selected", "false");
+    panel.attr("aria-hidden", "true");
+    }
+    tablist.append(tab);
+    });
+    tabcontainer.prepend($("<nav/>").append(tablist));
+    makeTabs(container);
+    }
+    }
+
+
+    $(function() {
+
+    //agganciamo come estensione di JQeury una funzione che richiama la nostra makeTabs su tutti gli elementi selezionati
+    //ritorniamo this (restituito a sua volta da thiseach) per permettere la concatenazione dei metodi di JQuery
+    jQuery.fn.extend({awdTabs: function(){return this.each(function(){makeTabs(this)})}});
+    /*---------------------------------------------------------*/
+
+    $(".tabs.v1bis").each(function(){
+    makeTabs(this);
+    });
+    /*---------------------------------------------------------*/
+
+
+    /*---------------------------------------------------------*/
+    var invisibile = $("section > header").addClass("invisibile");
+    $(document).on("awdtabs:change", function(e, a2){console.log(a2)})
+    });
+    });</script>
+
+
+<div id="page-body" role="main">
+
+    <div class="panel">
+        <div class="action-bar bar-top">
+            <h1 id="h1pannello">Notifiche</h1>
+            <br>
+            <p>Da qui potrai controllare tutte le notifiche di collaborazione.</p>
+
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="tabs v1bis">
+
+
+        <nav>
+
+
+
+            <ul role="tablist" id="tabsnavulpannello" >
+                <li id="tabsnavullipannello" role="tab" class="active header" aria-selected="true" aria-controls="tab1c1" style="float:left !important;"><h2 id="tabsnavullih2pannello">Pannello degli inviti</h2></li>
+                <li id="tabsnavullipannello" role="tab" aria-selected="false" aria-controls="tab1c2pannello" style="float:left !important;"><h2 id="tabsnavullih2pannello">Pannello delle proposte</h2></li>
+                <li id="tabsnavullipannello" role="tab" aria-selected="false" aria-controls="tab1c3pannello" style="float:left !important;"><h2 id="tabsnavullih2pannello">Pannello delle offerte</h2></li>
+                <li id="tabsnavullipannello" role="tab" aria-selected="false" aria-controls="tab1c4pannello" style="float:left !important;"><h2 id="tabsnavullih2pannello">Pannello delle domande</h2></li>
+
+            </ul>
+
+        </nav>
+        <div style="clear: both !important; width: 100% !important;"></div>
+        <div class="tabcontent">
+            <section role="tabpanel" id="tab1c1" class="active split3 tabstabcontentsection" aria-hidden="false" style="margin-top:0.1%">
+                <header ><h1 id="h1pannello">Pannello degli inviti</h1></header>
+
+
+
+                <ul id="llivelli">
+                    <#if (utentetsk?size>0)>
+                    <h1 id="h1pannello"> Sviluppatore:</h1>
+
+                    <#list utentetsk as utentetask>
+                    <li >
+                        <a class="inviti" href="profilo?n=${utentetask.id}" ><h1 id="bordobianco"> ${utentetask.nome}</h1></a>
+                    </li>
+                    </#list>
+                    <#else>
+                    <h1 id="h1pannello"> Non hai ancora invitato nessuno sviluppatore!</h1>
+                    </#if>
+                </ul>
+
+                <ul id="llivelli">
+                    <#if (utentetsk?size>0)>
+                    <h1 id="h1pannello"> Task:</h1>
+                    <#list tskinvitato as taskinvitato>
+                    <li>
+                        <a href="task?n=${taskinvitato.id}"><h1 id="bordobianco2"> ${taskinvitato.nome}</h1></a>
+                    </li>
+                    </#list>
+                    <#else>
+                    </#if>
+                </ul>
+
+                <ul id="llivelli">
+                    <#if (utentetsk?size>0)>
+                    <h1 id="h1pannello"> Stato:</h1>
+                    <#list stinvitato as statoinvitato>
+                    <li>
+                        <#if statoinvitato.stato == "accettato">
+                        <h1 id="accettato"> Accettato </h1>
+                        </#if>
+                        <#if statoinvitato.stato == "Adesione richiesta">
+                        <h1 id="richiesta" > In attesa </h1>
+                        <a href="pannello?n=${n}&annulla=${statoinvitato.id}">
+                            <button id="buttonannullaproposta"> Annulla Richiesta </button>
+                        </a>
+                        </#if>
+                        <#if statoinvitato.stato == "rifiutato">
+                        <h1 id="rifiutato"> Rifiutato </h1>
+                        </#if>
+
+                    </li>
+                    </#list>
+                    <#else>
+                    </#if>
+                </ul>
+
+
+            </section>
+            <section role="tabpanel" id="tab1c2pannello" class="tabstabcontentsection" aria-hidden="true" style="margin-top:0.1%">
+                <header><h1 id="h1pannello">Pannello delle proposte</h1></header><br>
+
+                <#if (tskatt?size>0)>
+                <h1 id="h1pannello"> Task:</h1>
+                <#list tskatt as taskatt>
+                <form action="" method="GET" id="provaform" style="border: solid 1px transparent; ">
+                    <a href="task?n=${taskatt.id}"><h1 id="nometask2"> ${taskatt.nome}</h1></a>
+                    <input type="hidden" name="n" value="${n}" id="n">
+
+                    <input type="hidden" name="taskid" value="${taskatt.id}" id="taskid">
+
+                    <input type="submit" value="rifiuta" id="rifiutatoi" name="partecipazione" class="button2">
+                    <input type="submit"  value="accetta" name="partecipazione" id="accettatoi" class="button2">
+                </form>
+                </#list>
+                <#else>
+                <h1 id="h1pannello"> Non ti sono ancora arrivate proposte!</h1>
+                </#if>
+
+            </section>
+            <section role="tabpanel" id="tab1c3pannello" class="tabstabcontentsection" aria-hidden="false" style="padding: 2%; position: inherit;">
+                <header><h1 id="h1pannello">Pannello delle offerte</h1></header><br>
+                <#if (tskliv?size>0) || (dom?size>0)>
+                <h1 id="h1pannello"> Task:</h1>
+                <#list tskliv as tasklivello>
+                <form action="task" method="get" >
+                    <a href="task?n=${tasklivello.id}"> <h1 class="dividi1" id="bordobianco"> ${tasklivello.nome}</h1></a>
+                    <input type="hidden" name="taskidl" value="${tasklivello.id}" id="taskidl">
+                    <input type="hidden" name="p" value="1" id="p">
+                    <input type="hidden" name="n" value="${tasklivello.id}" id="n">
+                    <input type="submit"  value="Domandati" name="Domandati" class="button2 dividi1" id="domandati" >
+                </form>
+                </#list> 
+
+
+                <div class="dividi1" style="position:inherit">
+                    <#list tskdom as taskdom>
+                    <a href="task?n=${taskdom.id}"><h1 id="bordobianco"> ${taskdom.nome}</h1></a>
+
+                    </#list>
+                </div>
+                <div class="dividi1" style = "position: absolute; margin-left: 4.9%;">
+                    <#list dom as domanda>
+                    <#if domanda.stato == "accettato">
+                    <h1 id="accettato2"> Accettato </h1>
+                    </#if>
+                    <#if domanda.stato == "Adesione richiesta">
+                    <h1 id="richiesta2" > In attesa </h1>
+                    <a href="pannello?n=${n}&annulladomanda=${domanda.id}">
+                        <button id="buttonannullaproposta2"> Annulla Richiesta </button>
+                    </a>
+                    </#if>
+                    <#if domanda.stato == "rifiutato">
+                    <h1 id="rifiutato2"> Rifiutato </h1>
+                    </#if>
+                    </#list>
+                </div>
+                <#else>
+                <h1 id="h1pannello"> Non ci sono task a cui puoi partecipare!</h1>
+                </#if>
+            </section>
+            <section role="tabpanel" id="tab1c4pannello" class="tabstabcontentsection" aria-hidden="true" style="margin-top:0.1%">
+                <header><h1 id="h1pannello">Pannello delle domande</h1></header><br>
+                <#if (utentedom?size>0)>	
+                <div >
+                    <div class="stat-block online-list">
+
+                        <#assign x=0>
+                        <div class="dividi1">
+                            <h1 id="h1pannello"> Sviluppatore:</h1>
+                            <#list utentedom as utentedomanda>
+                            <form action="" method="get">
+                                <a href="profilo?n=${utentedomanda.id}"> 
+                                    <h1 id="bordobianco">${utentedomanda.nome} </h1></a>
+                                <input type="hidden" name="utentedomanda" value="${utentedomanda.id}" id="p${x}">
+                                <#assign x++>
+                            </form>
+                            </#list>
+                        </div>
+                        <#assign x=0>
+                        <div class="dividi1">
+                            <h1 id="h1pannello"> Task:</h1>
+                            <#list taskdom as taskdomanda>
+                            <form action="" method="get" id="${x}" >
+
+                                <div class="dividi1">
+                                    <a href="task?n=${taskdomanda.id}"><h1 id="bordobianco2"> ${taskdomanda.nome}</h1></a>
+                                </div>
+                                <div class="dividi10" >
+                                    <input type="hidden" name="n" value="${n}" id="n">
+                                    <input type="submit"  value="accetta" name="domanda" class="button2 accettatoinput" onclick="sub(${x})">
+                                    <input type="hidden" name="taskdomandaid" value="${taskdomanda.id}" id="taskdomandaid">
+
+
+                                    <input type="submit" value="rifiuta"  name="domanda" class="button2 rifiutatoinput" onclick="sub(${x})" >
+                                    <#assign x++>
+                                </div>
+                            </form>
+                            </#list>
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <#else>
+                <h1 id="h1pannello"> Non hai effettuato alcuna domanda! </h1>
+                </#if>
+            </section>
+
+        </div>
+    </div>
+
+
+
+
+</div>
+
+<script>
+    sub = function(n) {
+
+    var numero = document.getElementById("p" + n);
+    document.getElementById(n).appendChild(numero);
+    document.getElementById(n).submit();
+    }
+
+</script>
+

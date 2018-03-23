@@ -1,0 +1,69 @@
+<div id="page-body" role="main">			
+    <div class="panel">
+        <div class="action-bar bar-top">
+            <h1>Ricerca</h1>
+        </div>
+    </div>
+    <form method="get" action="" data-focus="keywords">
+        <div class="panel">
+            <div class="inner">
+                <h3>Query di ricerca</h3>
+                <fieldset>
+                    <dl>
+                        <dt><label for="keywords">Cerca per parole chiave:</label><br /></dt>
+                        <dd><input type="search" class="inputbox" name="keywords" id="keywords" size="40" title="Cerca per parole chiavi" /></dd>
+                    </dl>
+                    <dl>
+                        <dt></dt>
+                        <dd><input  type="hidden" class="inputbox" name="author" id="author" size="40" title="Cerca per coordinatore" /></dd>
+                    </dl>
+                </fieldset>
+            </div>
+        </div>
+        <div class="panel bg2">
+            <div class="inner">
+                <h3>Ricerca Sviluppatori</h3>
+                <fieldset id="fieldset">
+
+                    <dl id="riga">
+                        <dt><label for="sd" >Skill:</label></dt>
+                        <dd id="dd"><select name="sk0" id="sk">
+                                <#list skills as skill>
+                                <option value="${skill.id}">${skill.nome}</option>
+                                </#list>
+                            </select>&nbsp;
+                            <label for="skilllivello">Livello:</label><input type="number" name="skilllivello0"  id="skilllivello" min="0" max="10" /> 
+
+                        </dd>
+                    </dl>
+                    <i class="fa fa-plus piu" aria-hidden="true" id="piu"></i>
+
+                </fieldset>
+
+            </div>
+        </div>
+        <div class="panel bg3">
+            <div class="inner">
+                <fieldset class="submit-buttons">
+                    <input type="hidden"  value="0" />
+                    <input type="reset" value="Reset" name="reset" class="button2" />&nbsp;
+                    <input type="submit" name="submit" value="Cerca" class="button1" />
+                </fieldset>
+            </div>
+        </div>
+    </form>							
+</div>	
+
+<script>
+    var n = 1;
+    $("#piu").click(function () {
+        //$("#sk").attr('name', 'ciao');
+        var riga = $("#riga").clone(true);
+
+        $("#dd > select").first().attr('name', 'sk' + n);
+        $("#dd > input").first().attr('name', 'livelloskill' + n);
+        $("#fieldset:last-child").prepend(riga);
+        n++;
+    }
+    );
+</script>

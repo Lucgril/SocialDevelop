@@ -1,0 +1,296 @@
+<script src="js/jquery.min.js">/* */</script>
+<script>
+    jQuery(document).ready(function () {
+        jQuery('.skillbar').each(function () {
+            jQuery(this).find('.skillbar-bar').animate({
+                width: jQuery(this).attr('data-percent')
+            }, 3000);
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        function makeTabs(container) {
+            var tabcontainer = $(container);
+            tabcontainer.addClass("enabled");
+            $("[role='tablist'] > [role='tab']", tabcontainer).click(function () {
+                var tab = $(this);
+                if (tab.hasClass("active"))
+                    return;
+                var tabid = tab.attr("aria-controls");
+                var panel = $("#" + tabid, tabcontainer);
+                $("[role='tablist'] > [role='tab']", tabcontainer).attr("aria-selected", "false").removeClass("active");
+                tab.attr("aria-selected", "true").addClass("active");
+                $("[role='tabpanel']", tabcontainer).attr("aria-hidden", "true").removeClass("active");
+                panel.attr("aria-hidden", "false").addClass("active");
+                tabcontainer.trigger("awdtabs:change", tab);
+//RICEVENTE: $(document).on("awdtabs:change",function(e,a2){comsole.log(a2)})
+            });
+        }
+//la funzione che segue prima manipola il container per creare tutto il
+//markup richiesto da un tabcontainer "standard", poi richiama makeTabs
+//per attivarlo
+        function makeTabs2(container) {
+            var tabcontainer = $(container);
+            if (tabcontainer.hasClass("tabs")) {
+                var tablist = $("<ul role='tablist'/>");
+                var panels = $("> section", tabcontainer);
+                if (panels.filter(".active").length == 0)
+                    panels.first().addClass("active");
+                panels.wrapAll("<div class='tabcontent'/>");
+                panels.each(function () {
+                    var uid = Math.floor(Math.random() * 26) + Date.now();
+                    var panel = $(this)
+                    var tabid = (panel[0].hasAttribute("id") ? panel.attr("id") : ("tabx" + (uid)));
+                    var tabtitle = (panel[0].hasAttribute("data-label") ? panel.attr("data-label") : $("header", panel).text());
+                    var tab = $("<li role='tab'/>");
+                    tab.attr("aria-controls", tabid);
+                    tab.text(tabtitle);
+                    panel.attr("id", tabid);
+                    panel.attr("role", "tabpanel");
+                    if (panel.hasClass("active")) {
+                        tab.addClass("active");
+                        tab.attr("aria-selected", "true");
+                        panel.attr("aria-hidden", "false");
+                    } else {
+                        tab.attr("aria-selected", "false");
+                        panel.attr("aria-hidden", "true");
+                    }
+                    tablist.append(tab);
+                });
+                tabcontainer.prepend($("<nav/>").append(tablist));
+                makeTabs(container);
+            }
+        }
+        $(function () {
+//agganciamo come estensione di JQeury una funzione che richiama la nostra makeTabs su tutti gli elementi selezionati
+//ritorniamo this (restituito a sua volta da thiseach) per permettere la concatenazione dei metodi di JQuery
+            jQuery.fn.extend({awdTabs: function () {
+                    return this.each(function () {
+                        makeTabs(this)
+                    })
+                }});
+            /*---------------------------------------------------------*/
+            $(".tabs.v1bis").each(function () {
+                makeTabs(this);
+            });
+            /*---------------------------------------------------------*/
+            /*---------------------------------------------------------*/
+            var invisibile = $("section > header").addClass("invisibile");
+            $(document).on("awdtabs:change", function (e, a2) {
+                console.log(a2)
+            })
+        });
+    });
+</script>
+
+
+<div id="page-body" role="main">
+
+    <div class="panel">
+        <div class="action-bar bar-top">
+            <h1 id="h1profilo">Profilo</h1>
+            <br>
+
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="tabs v1bis">
+
+        <nav >
+
+
+
+            <ul role="tablist" id="tabsnavulprofilo">
+                <li role="tab" class="active header" id="tabsnavulliprofilo" aria-selected="true" aria-controls="tab1c1" style="width:20.2% !important; text-align: center"><h2 id="tabsnavullih2profilo">Informazioni di base</h2></li>
+                <li role="tab" aria-selected="false" id="tabsnavulliprofilo" aria-controls="tab1c2profilo" style="width:20% !important; text-align: center"><h2 id="tabsnavullih2profilo">Progetti coordinati</h2></li>
+                <li role="tab" aria-selected="false" id="tabsnavulliprofilo" aria-controls="tab1c3profilo" style="width:20% !important; text-align: center"><h2 id="tabsnavullih2profilo">Task in corso</h2></li>
+                <li role="tab" aria-selected="false" id="tabsnavulliprofilo" aria-controls="tab1c4profilo" style="width:20% !important; text-align: center "><h2 id="tabsnavullih2profilo">Task completati</h2></li>
+
+            </ul>
+
+
+        </nav>
+        <div class="tabcontent">
+            <section role="tabpanel" id="tab1c1" class="active split3 tabstabcontentsection" aria-hidden="false">
+                <header ><h1 id="h1profilo">Informazioni di base</h1></header>
+
+                <div style="margin-top:1.8%" class="stat-block online-list">
+                    <div>
+                        <div class="agileinfo_tab3">
+                            <div class="wthree_tab_grid">
+                                <ul class="wthree_tab_grid_list">
+                                    <li><i class="fa fa-user" aria-hidden="true"></i></li>
+                                    <li>Nome e Cognome: <span>${utente.nome} ${utente.cognome}</span></li>
+                                </ul>
+                                <ul class="wthree_tab_grid_list">
+                                    <li><i  class="fa fa-envelope-o" aria-hidden="true"></i></li>
+                                    <li>Indirizzo Email: <span><a href="mailto:info@example.com">${utente.email}</a></span></li>
+                                </ul>
+                                <ul class="wthree_tab_grid_list">
+                                    <li><i class="fa fa-mobile" aria-hidden="true"></i></li>
+                                    <li>Telefono: <span>${utente.telefono}</span></li>
+                                </ul>
+                                <form action="downloadcurriculum" method="get" style="margin-top: 2%">
+                                    <input type="hidden" name="n" value="${n}"/>
+                                    <input type="submit" style="width: 20%" id="partecipa" name="p" value="Scarica curriculum!"/>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left:1.5%">
+                        <h1 id="h1profilo">Skills possedute:</h1>
+                        <#if (skillutente?size>0)>
+                        <#list skillutente as skill_utente>
+                        <div class="skillbar clearfix " data-percent="${skill_utente.livello*10}%">
+                            <div class="skillbar-title" style="background: #2980b9;"><span>${skill_utente.skill.nome}</span></div>
+                            <div class="skillbar-bar" style="background: #3498db;"></div>
+                            <div class="skill-bar-percent">${skill_utente.livello*10}%</div>
+                        </div> <!-- End Skill Bar -->
+                        </#list>
+                        <#else>
+                        <h1 id="h1profilo">Non ci sono ancora skills!</h1>
+                        </#if>
+                    </div>
+                </div>
+
+
+
+
+            </section>
+            <section role="tabpanel" style="margin-top:0.1%" id="tab1c2profilo" class="tabstabcontentsection" aria-hidden="true">
+                <header><h1 id="h1profilo">Progetti coordinati</h1></header>
+
+                <div class="stat-block online-list">
+                    <#if (pg?size>0)>
+                    <h1 id="h1profilo">Progetti:</h1>
+
+                    <#list pg as progetto>
+
+                    <a class="inviti" href="progetto?n=${progetto.id}" ><h1 id="bordobianco"> ${progetto.nome}</h1></a><br>
+                    </#list>
+                    <#else>
+                    <h1 id="h1profilo">Non sei ancora coordinatore di nessun progetto!</h1>
+                    </#if>
+                </div>
+
+            </section>
+            <section role="tabpanel" style="margin-top:0.1%" id="tab1c3profilo" class="tabstabcontentsection" aria-hidden="false">
+                <header><h1 id="h1profilo">Task in corso</h1></header>
+
+
+                <div  class="stat-block online-list">
+                    <#if (tsk?size>0)>
+                    <h1 id="h1profilo">Task:</h1>
+
+                    <#list tsk as task>
+
+                    <a class="inviti" href="task?n=${task.id}"><h1 id="bordobianco"> ${task.nome}</h1></a><br>
+                    </#list> 
+                    <#else>
+                    <h1 id="h1profilo">Non stai partecipando a nessun task!</h1>
+                    </#if>
+                </div>
+            </section>
+            <section role="tabpanel" style="margin-top:0.1%" id="tab1c4profilo" class="tabstabcontentsection" aria-hidden="true">
+                <header><h1 id="h1profilo">Task completati</h1></header>
+                <div>
+                    <div style="margin-top:" class="stat-block online-list">
+                        <#if (tskdcom?size>0) || (tskpcom?size>0)>
+                        <div class="dividi1">
+
+                            <h1 id="h1profilo">Task:</h1>
+
+
+
+                            <#list tskdcom as taskcdcom>
+
+                            <a href="task?n=${taskcdcom.id}"><h1 id="bordobianco"> ${taskcdcom.nome}</h1></a>
+
+                            </#list>
+
+
+                            <#list tskpcom as taskcpcom>
+                            <a href="task?n=${taskcpcom.id}"><h1 id="bordobianco"> ${taskcpcom.nome}</h1></a>
+
+                            </#list>
+
+
+                        </div>
+                        <div class="dividi1" >
+                            <h1 id="tirasuprofilo"> Valutazione:</h1>
+                            <#list valdom as valudom>
+
+                            <h1 style="text-align:center">${valudom.valutazione}</h1>
+                            </#list>
+
+                            <#list valpro as valupro>
+
+                            <h1 style="text-align:center">${valupro.valutazione} </h1>
+                            </#list>
+                        </div>
+                    </div>
+                    <#else>
+                    <h1 id="h1profilo"> Nessun task completato! </h1>
+                    </#if>
+                </div>
+
+            </section>
+
+        </div>
+    </div>
+
+    <#if n==userid>
+    <div class="panel bg2">
+        <div class="inner">
+            <h3>Inserisci Skill</h3>
+            <form action="addskillutente" method="get">
+                <fieldset id="fieldset">
+
+                    <dl id="riga">
+                        <dt><label for="sd" >Skill:</label></dt>
+                        <dd id="dd"><select name="sk0" id="sk">
+                                <#list skill1 as skill>
+                                <option value="${skill.id}">${skill.nome}</option>
+                                </#list>
+                            </select>&nbsp;
+                            <label for="skilllivello">Livello:</label><input type="number" name="skilllivello0" id="skilllivello" min="0" max="10" /> 
+
+                        </dd>
+                    </dl>
+                    <fieldset class="submit-buttons">
+                        <input type="hidden" name="n" value="${n}" />
+                        <input type="reset" value="Reset" name="reset" class="button2" />&nbsp;
+                        <input type="submit" name="submit" value="Inserisci" class="button1" />
+                    </fieldset>
+                    <i class="fa fa-plus piu" aria-hidden="true" id="piu"></i>
+
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+    </#if>
+
+
+</div>
+
+<script>
+    var n = 1;
+    $("#piu").click(function () {
+        //$("#sk").attr('name', 'ciao');
+        var riga = $("#riga").clone(true);
+
+        $("#dd > select").first().attr('name', 'sk' + n);
+        $("#dd > input").first().attr('name', 'livelloskill' + n);
+        $("#fieldset:last-child").prepend(riga);
+        n++;
+    }
+    );
+</script>

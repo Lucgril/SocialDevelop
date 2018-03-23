@@ -1,0 +1,55 @@
+<a id="start_here" class="anchor"></a>
+<div id="page-body" role="main">
+
+    <form action="" method="POST" id="form-new-task" >
+        <div class="panel">
+            <div class="inner">
+                <div class="content">
+                    <h2>Modifica un task al progetto</h2>
+                    <fieldset>
+                        <input type="hidden" id="crea" name="crea" value="1"/>
+
+                        <dl>
+                            <dt><label for="nomeTask">Nome Task:</label></dt>
+                            <dd><input class="inputbox" type="text" name="nometask" id="nometask" value="${task.nome}" /></dd>
+                        </dl>
+                        <dl>
+                            <dt><label for="descrizione">Descrizione generale:</label><br /><span>Qui inseriamo la descrizione generale visualizzata dagli utenti.<br/><br/></span></dt>
+                            <dd><input class="inputbox" type="text" name="descrizione" id="descrizione"  maxlength="100" value="${task.descrizione}" /></dd>
+                        </dl>
+
+                        <dl>
+                            <dt><label for="tipo">Tipo Task:</label></dt>
+                            <dd>
+                                <input class="inputbox" type="text" name="tipo" id="tipo" value="${task.tipo.nome}" disabled  />
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><label for="numcollaboratori">Numero di collaboratori necessari:</label></dt>
+                            <dd><input class="inputbox" type="tel" name="numcollaboratori" id="numcollaboratori" value="${task.collaboratori}"   /></dd>
+                        </dl>
+                        <dl>
+                            <dt><label for="datainizio">Data inizio Task:</label></dt>
+                            <dd><input placeholder="${data_inizio}" value="${data_inizio}" placeholder="yyyy/MM/dd" type="text" onfocus="(this.type = 'date')" onblur="(this.type = 'text')" id="date" name="datainizio">
+
+                        </dl>
+                        <dl>
+                            <dt><label for="datainizio">Data fine Task:</label></dt>
+                            <dd><input placeholder="${data_fine}" type="text" value="${data_fine}" placeholder="yyyy/MM/dd" onfocus="(this.type = 'date')" onblur="(this.type = 'text')" id="date" name="datafine">
+
+                        </dl>
+                        <dl>
+                            <dt>&nbsp;</dt>
+                            <dd><input type="submit" name="modificatask" id="creatask" class="button1" value="Modifica Task" tabindex="2" /><input type="submit" name="modificaskill" id="modificaskill" class="button1" value="Modifica Skill" tabindex="2" />&nbsp; <input type="reset" value="Reset" name="reset" class="button2" /></dd>
+                        </dl>
+                    </fieldset>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>	
+
+
+
+

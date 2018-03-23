@@ -1,0 +1,53 @@
+<div id="page-body" role="main">
+    <div class="forabg">
+        <div class="inner">
+            <ul class="topiclist">
+                <li class="header">
+                    <dl class="row-item">
+                        <dt><div class="list-inner"><a href="">Progetti</a></div></dt>
+
+                    </dl>
+                </li>
+            </ul>
+            <#if (progetti?size>0)>
+            <ul class="topiclist forums" id="voti">
+                <#list progetti as progetto>
+                <li class="row">
+                    <dl class="row-item forum_read_subforum">
+                        <dt title="${progetto.nome}">
+                            <div class="list-inner">
+                                <a href="progetto?n=${progetto.id}" class="forumtitle" >${progetto.nome}</a>
+                                <br />${progetto.descrizione}
+                                <div class="responsive-show" style="display: none;">
+                                </div>
+                            </div>
+                        </dt>
+
+
+                    </dl>
+                </li>
+                </#list>
+            </ul>
+            <#else>
+            <ul class="topiclist forums" id="voti">
+
+                <li class="row">
+                    <dl class="row-item ">
+                        <dt >
+                            <div class="list-inner">
+                                Non ci sono progetti!
+
+                                <div class="responsive-show" style="display: none;">
+                                </div>
+                            </div>
+                        </dt>
+
+                    </dl>
+                </li>
+            </ul>
+            </#if>
+
+        </div>
+    </div>
+</div><!-- #inner-body-with-sidebar END-->
+

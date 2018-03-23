@@ -1,0 +1,109 @@
+<a id="start_here" class="anchor"></a>
+<div id="page-body" role="main">				
+    <div id="body-with-sidebar">
+        <div id="inner-body-with-sidebar">
+            <div class="stat-block online-list">
+                <h3>Skill Associate al task</h3>
+
+                <#if (skill?size>0)>
+
+                <ul id="lskill">
+                    <#list skill as s>
+                    <li>
+                        ${s.nome!"NO USERNAME"}
+                    </li>
+
+                    </br>
+                    </#list>
+                </ul>
+
+                </#if>
+
+                <#if (taskskill?size>0)>
+
+                <ul id="llivelli" >
+                    <#list taskskill as t>
+                    <form  action="" method="POST">
+                        <li >
+                            ${t.livello!"NO USERNAME"}
+
+
+
+                            <input type="hidden" value="${t.id}" name="tid">
+                            <input type="hidden" value="${n}" name="n">
+                            <input  type="submit" name="eliminaskill" id="eliminaskill" class="button1" value="Elimina Skill" tabindex="2"  />
+
+
+
+                        </li>
+                    </form>
+                    </br>
+                    </#list>
+                </ul>
+
+                </#if>
+
+            </div>
+            <#if (skill?size>0)>
+            <a href="${url}">
+                <input type="button" class="button1" id="newtask2" value="Cerca Sviluppatori"/>
+            </a></#if>       
+        </div> 
+
+    </div>
+
+    <div id="sidebar">
+        <div class="sblock">
+            <!-- Sidebar tabs block start below -->
+            <div class="s-tabs sblock">
+                <ul class="s-tabs-header">
+                    <li class="activetab"><a href="#tab1">Inserisci Nuova skill</a></li>
+
+                </ul>
+                <div class="mb10">
+                    <!-- Tab1 content start below -->
+                    <div id="tab1" class="tab activetab scontent">      
+                        <form action="" method="POST">
+                            <p id="iskill">
+                                Tipo Skill: 
+                                <select id="listaskill" name="listaskill">
+                                    <#if (selectskill?size>0)>
+                                    <#list selectskill as s>
+                                    <option value="${s.id}">${s.nome}</option> 
+                                    </#list>
+                                    </#if>
+                                </select>
+                            </p>
+                            <p id="ilivello"> Livello:
+                                <select id="liveloskill" name="livelloskill">
+                                    <option value="1"> 1</option>
+                                    <option value="2"> 2</option>
+                                    <option value="3"> 3</option>
+                                    <option value="4"> 4</option>
+                                    <option value="5"> 5</option>
+                                    <option value="6"> 6</option>
+                                    <option value="7"> 7</option>
+                                    <option value="8"> 8</option>
+                                    <option value="9"> 9</option>
+                                    <option value="10"> 10</option>
+                                </select>
+                            </p>
+
+                            <input type="hidden" id="store" name="store" value="1"/>
+                            <input type="submit" id="biskill" value="Inserisci Skill" />
+
+                        </form>
+                    </div>
+                    <!-- Tab1 content END -->  
+
+
+
+
+
+                </div>  
+            </div>
+            <!-- Sidebar tabs block END --> 
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,171 @@
+<div id="page-body" role="main">
+    <div class="panel">
+        <div class="action-bar bar-top">
+            <h1>${progetto.nome}</h1>
+            <br>
+            <p>${progetto.descrizione}</p>
+            <#if adminp??>
+            <a href="modificaprogetto?n=${progetto.id}">
+                <input type="button" class="button1" id="newtask3" value="Modifica Progetto"/>
+            </a>
+            </#if>
+        </div>
+    </div>
+    <div class="forabg">
+        <div class="inner">
+            <ul class="topiclist">
+                <li class="header">
+                    <dl class="row-item">
+                        <dt><div class="list-inner">Tasks</div></dt>
+                        <dd class="posts">Tipo</dd>
+                        <dd class="posts"><span>Data fine</span></dd>
+                    </dl>
+                </li>
+            </ul>
+
+            <#if (tasks?size>0)>
+            <div class="scrollbar" id="style-2">
+                <ul class="topiclist forums">
+                    <#list tasks as task>
+                    <li class="row">
+                        <dl class="row-item sticky_read">
+                            <dt title="${task.nome}">
+                                <div class="list-inner">
+                                    <a href="task?n=${task.id}" class="forumtitle">${task.nome}</a>
+                                    <br />${task.descrizione}												
+                                </div>
+                            </dt>
+
+                            <dd class="posts">${task.tipo.nome}</dd>
+                            <dd class="posts">${task.dataFine}</dd>
+
+                            <#if adminp??>
+                            <dd class="posts">
+                                <a href="modificatask?n=${task.id}&progetto=${n}">
+                                    <input type="button"  class="button1" id="newtask2" name="modificatask" value="Modifica Task" style=" margin-left: 10%"/>
+                                </a>
+                            </dd>
+                            </#if>
+                        </dl>
+                    </li>
+                    </#list>
+                </ul>
+            </div>
+            <#else>
+            <ul class="topiclist forums">
+                <li class="row">
+                    <dl>
+                        <dt title="">
+                            <div class="list-inner">
+                                <h4 class="forumtitle">Non ci sono ancora task!</h4>
+
+                            </div>
+                        </dt>
+
+                    </dl>
+
+                </li>
+                </#if>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<#if adminp??>
+<a href="newtask?n=${n}">
+    <input type="button" class="button1" id="newtask2" value="Crea Nuovo Task"/>
+</a>
+
+</#if>
+
+<div class="forumbg announcement">
+    <div class="inner">
+        <ul class="topiclist">
+            <li class="header">
+                <dl class="row-item">
+                    <dt><div class="list-inner">Messaggi</div></dt>
+                </dl>
+            </li>
+        </ul>
+
+        <#if (messaggi?size>0)>
+        <div class="scrollbar" id="style-2">
+            <ul  class=" topiclist topics">
+                <#list messaggi as messaggio>
+                <#if  partecipa?? || adminp??>
+                <li class="row bg1 announce">
+                    <dl class="row-item  forum_read_subforum">
+                        <dt title="Messaggio">
+                            <div class="list-inner">
+                                ${messaggio.testo}
+                                <br />
+
+                                <div class="responsive-hide">
+                                    da <a href="profilo?n=${messaggio.utente.id}" id="cdaa"  class="username-coloured">${messaggio.utente.nome} ${messaggio.utente.cognome}</a> &raquo; ${messaggio.data!"no data"}
+                                </div>
+                            </div>
+                        </dt>
+                    </dl>
+                </li>
+                <#else>
+                <#if messaggio.tipo == "pubblico">
+                <li class="row bg1 announce">
+                    <dl class="row-item announce_read">
+                        <dt title="Messaggio">
+                            <div class="list-inner">
+                                ${messaggio.testo}
+                                <br />
+
+                                <div class="responsive-hide">
+                                    da <a href="profilo?n=${messaggio.utente.id}" id="cdaa" class="username-coloured">${messaggio.utente.nome} ${messaggio.utente.cognome}</a> &raquo; ${messaggio.data!"no data"}
+                                </div>
+                            </div>
+                        </dt>
+                    </dl>
+                </li>
+                </#if>
+                </#if>
+                </#list>
+            </ul>
+        </div>
+        <#else>
+        <ul  class=" topiclist topics">
+            <li class="row bg1 announce">
+                <dl>
+                    <dt title="">
+                        <div class="list-inner">
+                            <h4 class="forumtitle">Non ci sono ancora messaggi!</h4>
+                        </div>
+                    </dt>
+                </dl>
+            </li>
+        </ul>
+        </#if>
+
+    </div>
+</div>
+
+<#if partecipa?? || adminp??>
+<div class="panel" id="mpan">
+    <div class="inner">
+        <h3>Invia un nuovo messaggio</h3>
+        <form action="" method="POST">
+            <div  class="dividi1">
+                <input  name="tipo" type="radio" value="pubblico"> Pubblico
+            </div>
+            <div class="dividi9">
+                <input name="tipo" type="radio" value="privato"> Privato
+            </div>
+            <div class = "mtdiv">
+
+                <textarea id="txare" name="messaggio"  class="inputbox" placeholder="Messaggio"></textarea>
+
+            </div>
+            <input class="button2" type="submit" id="newmessaggio" value="Invia Messaggio"/>
+        </form>
+    </div>
+</div>
+</#if>
+
+
