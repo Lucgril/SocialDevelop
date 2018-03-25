@@ -18,3 +18,4 @@ Download and install the tools and set the environment variables as given in the
 * You have to add the freemarker.jar, mail.jar and mysql-connector.jar. 
 * Running the web application that you have just opened on Tomcat within Netbeans.
 
+Please refer to the Documentazione.pdf inside the folder documentazione for the complete documentation of SocialDevelop project.
