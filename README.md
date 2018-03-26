@@ -14,7 +14,8 @@ Following list shows the technologies and tools used in SocialDevelop web applic
 Download and install the tools and set the environment variables as given in the installation document of respective tools. Below are the few setups we need for this application.
 
 * Download this Github Repository.
-* Open the project with Netbeans. Please refer "SocialDevelop.sql" file inside the folder database to create Tables in MySQL Database, which are required by this web application. You must first create a database called SocialDevelop.
+* Open the project with Netbeans. Note that if you try to open the application with Eclipse, you may have some problems.
+Please refer "SocialDevelop.sql" file inside the folder database to create Tables in MySQL Database, which are required by this web application. You must first create a database called SocialDevelop.
 * You have to add the freemarker.jar, mail.jar and mysql-connector.jar. 
 * Running the web application that you have just opened on Tomcat within Netbeans.
 
